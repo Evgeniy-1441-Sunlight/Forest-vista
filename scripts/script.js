@@ -132,7 +132,7 @@ $(document).ready(function () {
 
         const yandexMarker = document.createElement('div')
         yandexMarker.classList.add('yandex-marker');
-        yandexMarker.innerHTML = '<img src="../images/yandex-marker/yandex-marker.png" alt="marker">'
+        yandexMarker.innerHTML = '<img src="./images/yandex-marker/yandex-marker.png" alt="marker">'
         yandexMarker.appendChild(popup);
 
         // Инициализируйте маркер
