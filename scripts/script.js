@@ -75,13 +75,13 @@ $(document).ready(function () {
         }
     })
     //
-$(window).scroll(function () {
-    if (window.scrollY > 800) {
-        $('.btn-up').addClass('active');
-    } else {
-        $('.btn-up').removeClass('active');
-    }
-})
+    $(window).scroll(function () {
+        if (window.scrollY > 800) {
+            $('.btn-up').addClass('active');
+        } else {
+            $('.btn-up').removeClass('active');
+        }
+    })
 
 
     //MENU BURGER
@@ -149,11 +149,12 @@ $(window).scroll(function () {
         map.addChild(new YMapDefaultFeaturesLayer());
         map.addChild(marker);
     }
+
     initMap();
 //
 
 
-     $('.booking-field-date').on('click', (e) => {
+    $('.booking-field-date').on('click', (e) => {
         $('#choice-date').show()
         $('.span-text').css('display', 'none');
     })
@@ -218,7 +219,7 @@ $(window).scroll(function () {
             customSelectText.text(guests);
 
             // СУММА ЗА КОЛ-ВО ГОСТЕЙ
-           let guestArray = guests.split(' ');
+            let guestArray = guests.split(' ');
 
             let numGuest = guestArray[0];
             console.log(numGuest);
@@ -288,22 +289,25 @@ $(window).scroll(function () {
             return;
         }
 
-        $.ajax({
-            method: "POST",
-            url: "https://testologia.ru/checkout",
-            data: {
-                name: inputName.val(),
-                phone: inputPhone.val()
-            }
-        })
-            .done(function (response) {
-                if (response.success) {
-                    modalWindow.hide();
-                    modalWindowPayment.show();
-                } else {
-                    alert('Возникла ошибка! Введите: itlogia')
-                }
-            });
+        modalWindow.hide();
+        modalWindowPayment.show();
+
+        // $.ajax({
+        //     method: "POST",
+        //     url: "https://testologia.ru/checkout",
+        //     data: {
+        //         name: inputName.val(),
+        //         phone: inputPhone.val()
+        //     }
+        // })
+        //     .done(function (response) {
+        //         if (response.success) {
+        //             modalWindow.hide();
+        //             modalWindowPayment.show();
+        //         } else {
+        //             alert('Возникла ошибка! Введите: itlogia')
+        //         }
+        //     });
 
         if (modalWindowPayment) {
             $('.customer-data-name span').text(inputName.val());
@@ -346,28 +350,33 @@ $(window).scroll(function () {
             return;
         }
 
+        $('.form-contacts').hide()
+        contactModal.css('display', 'flex');
+        contactNameInput.val('');
+        contactPhoneInput.val('');
 
-        $.ajax({
-            method: "POST",
-            url: "https://testologia.ru/checkout",
-            data: {
-                name: contactNameInput.val(),
-                phone: contactPhoneInput.val()
-            }
-        })
-            .done(function (msg) {
-                if (msg.success) {
-                    console.log('success');
-                    $('.form-contacts').hide()
-                    contactModal.css('display', 'flex');
-                    contactNameInput.val('');
-                    contactPhoneInput.val('');
-                } else {
-                    contactNameInput.css('border', '1px solid #BD0000FF')
-                    contactPhoneInput.css('border', '1px solid #BD0000FF');
-                    alert('Введите корректные данные')
-                }
-            });
+
+        // $.ajax({
+        //     method: "POST",
+        //     url: "https://testologia.ru/checkout",
+        //     data: {
+        //         name: contactNameInput.val(),
+        //         phone: contactPhoneInput.val()
+        //     }
+        // })
+        //     .done(function (msg) {
+        //         if (msg.success) {
+        //             console.log('success');
+        //             $('.form-contacts').hide()
+        //             contactModal.css('display', 'flex');
+        //             contactNameInput.val('');
+        //             contactPhoneInput.val('');
+        //         } else {
+        //             contactNameInput.css('border', '1px solid #BD0000FF')
+        //             contactPhoneInput.css('border', '1px solid #BD0000FF');
+        //             alert('Введите корректные данные')
+        //         }
+        //     });
     })
 
     $('.contact-close').on('click', function () {
@@ -413,7 +422,7 @@ $(window).scroll(function () {
 
         // КАЛЕНДАРЬ СУММА
         price = days * 14436;
-        console.log(price);
+
 
         CalculateTotalPrice()
 
